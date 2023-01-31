@@ -4,17 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='/css/main.css'/>
+
     <title>Home page</title>
 </head>
 <body>
     <h1>Let's Chat xoxo</h1>
     <main id="app">
+        <section>
+            <input id="nickname" v-model="nickname" type="text" placeholder="Nickname?">
         <form>
             <label for="message">u talking to me??</label>
             <textarea v-model="message" id="textarea" class="message" autocomplete="off"></textarea>
             <input @click.prevent="dispatchMessage" type="submit" value="Send">
         </form>
-
+        </section>
         <section class="messages">
             <ul id="messages">
                 <!--render a new message component for every message-->

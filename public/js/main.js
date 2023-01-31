@@ -22,7 +22,8 @@ function showNewMessage({ message }){
       return {
         socketID: '',
         message: '',
-        messages: []
+        messages: [],
+        nickname: ''
       }
     }, 
 
@@ -30,7 +31,8 @@ function showNewMessage({ message }){
         dispatchMessage(){
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickname || 'IM ALIVE'
+                name: this.nickname || 'none of your business',
+                id: this.socketID
             })
 
             this.message = "";
