@@ -1,5 +1,6 @@
 // imports go at the top
 import ChatMsg from './components/ChatMessage.js';
+import userTypingMsg from './components/userTypingMsg.js';
 
 const socket = io();
 
@@ -15,6 +16,18 @@ function showNewMessage({ message }){
     vm.messages.push(message);
 }
 
+function handleUserTyping({user}){
+  console.log('somebody is typing');
+  vm.typing = user;
+
+  if (user.id = vm.socketID) {
+    vm.userTyping = user.nickname + ' is writing you a message';
+  }
+  else {
+    vm.userTyping = ' ';
+  }
+}
+
   const { createApp } = Vue
 
   const vm = createApp({
@@ -23,7 +36,9 @@ function showNewMessage({ message }){
         socketID: '',
         message: '',
         messages: [],
-        nickname: ''
+        nickname: '',
+        userTyping: '',
+        user: []
       }
     }, 
 
@@ -31,19 +46,29 @@ function showNewMessage({ message }){
         dispatchMessage(){
             socket.emit('chat_message', {
                 content: this.message,
-                name: this.nickname || 'none of your business',
+                name: this.nickname || 'anonymous',
                 id: this.socketID
             })
 
             this.message = "";
+        },
+        
+        catchTextFocus(){
+          //emit a typing event and broadcast it to the server
+          socket.emit('user_typing', {
+            name: this.nickname || 'none of your business'
+          })
         }
     },
 
     components: {
-        newmsg: ChatMsg
+        newmsg: ChatMsg,
+        userTypingMsg: userTypingMsg
+
     }
 
   }).mount('#app')
 
   socket.addEventListener('connected', setUserID);
   socket.addEventListener('new_message', showNewMessage);
+  socket.addEventListener('typing', handleUserTyping );

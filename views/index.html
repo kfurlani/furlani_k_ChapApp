@@ -11,21 +11,26 @@
 </head>
 <body>
     <h1>Let's Chat xoxo</h1>
-    <main id="app">
-        <section>
-            <input id="nickname" v-model="nickname" type="text" placeholder="Nickname?">
-        <form>
-            <label for="message">u talking to me??</label>
-            <textarea v-model="message" id="textarea" class="message" autocomplete="off"></textarea>
-            <input @click.prevent="dispatchMessage" type="submit" value="Send">
-        </form>
-        </section>
+    <main id="app" class="chatbox-container">
+        <section class="chatbox">
         <section class="messages">
             <ul id="messages">
                 <!--render a new message component for every message-->
                 <newmsg v-for="message in messages" :message="message"></newmsg>
             </ul>
+            
         </section>
+
+        <section>
+            <label for="message">Let us know your name & someone will be with you shortly!</label>
+           <!-- <usertyping v-for="A user is typing" :userTypingMsg="userTypingMsg"></usertyping>-->
+            <input id="nickname" v-model="nickname" type="text" placeholder="Name">
+        <form>
+            <textarea @focus="catchTextFocus" v-model="message" id="textarea" class="message" autocomplete="off" placeholder="Message"></textarea>
+            <input @click.prevent="dispatchMessage" type="submit" value="Send">
+        </form>
+        </section>
+    </section>
 
     </main>
     

@@ -33,4 +33,23 @@ io.on('connection', (socket) => {
     //step 2 - show everyone what was just sent through (send the message to everyone connected to the service)
   io.emit('new_message', { message: msg });
   })
+
+  //listen for typing event and broadcast to all 
+  socket.on('user_typing', function(user){
+    console.log(user);
+
+    io.emit('typing', { currentUser: user })
+  }) ;
+
+  socket.on('stopTyping', function(user) {
+    console.log(user);
+    io.emit('stopTyping', { currentlytyping: user });
+});
+
+  socket.emit('connected', {sID: socket.id, message: 'new connection'});
+
+
+  socket.on ('typing', (data) => {
+    socket.broadcast.emit('typing', (data));
+    });
 });
