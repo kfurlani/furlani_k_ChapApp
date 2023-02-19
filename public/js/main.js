@@ -21,7 +21,7 @@ function handleUserTyping({user}){
   vm.typing = user;
 
   if (user.id = vm.socketID) {
-    vm.userTyping = user.nickname + ' is writing you a message';
+    vm.userTyping = user + ' is writing you a message';
   }
   else {
     vm.userTyping = ' ';
