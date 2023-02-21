@@ -1,6 +1,7 @@
 // imports go at the top
 import ChatMsg from './components/ChatMessage.js';
-import userTypingMsg from './components/userTypingMsg.js';
+import LoginPage from './components/LoginPage.js';
+//import userTypingMsg from './components/userTypingMsg.js';
 
 const socket = io();
 
@@ -20,12 +21,12 @@ function handleUserTyping({user}){
   console.log('somebody is typing');
   vm.typing = user;
 
-  if (user.id = vm.socketID) {
-    vm.userTyping = user + ' is writing you a message';
-  }
-  else {
-    vm.userTyping = ' ';
-  }
+  //if (user.id = vm.socketID) {
+    //vm.userTyping = user.nickname + ' is writing you a message';
+ // }
+  //else {
+    //vm.userTyping = ' ';
+  //}
 }
 
   const { createApp } = Vue
@@ -37,8 +38,11 @@ function handleUserTyping({user}){
         message: '',
         messages: [],
         nickname: '',
-        userTyping: '',
-        user: []
+        //userTyping: '',
+        //user: []
+        userLogin: false,
+        loginP: ''
+
       }
     }, 
 
@@ -56,14 +60,15 @@ function handleUserTyping({user}){
         catchTextFocus(){
           //emit a typing event and broadcast it to the server
           socket.emit('user_typing', {
-            name: this.nickname || 'none of your business'
+            name: this.nickname || 'anonymous'
           })
         }
     },
 
     components: {
         newmsg: ChatMsg,
-        userTypingMsg: userTypingMsg
+        login: LoginPage
+        //userTypingMsg: userTypingMsg
 
     }
 

@@ -1,6 +1,7 @@
 @import './modules/reset';
 @import './modules/vars';
 @import './modules/chatmessage';
+@import './modules/login.scss';
 
 //write some defaults here 
 
@@ -23,80 +24,3 @@ main section { padding: 1em; }
 
 #main-headline { text-align: center; margin-bottom: 0.8em; }
 
-label { display: block; padding-bottom: 0.5em;}
-
-textarea { width: 90%; height: 100px; font-family: Arial, sans-serif; font-size: 13px; padding:  0.5em 1em;
-    border-radius: 0.25em;
-    margin: 0.5em 0 1em 0; }
-
-input[type="submit"] { 
-    display: block;
-    background-color: #e94b5c;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    margin-top: 20px;
-    cursor: pointer;
-    font-size: 16px; 
-    
-}
-
-#nickname {
-    padding:  0.5em 1em;
-    border-radius: 0.25em;
-    margin: 0.5em 0 1em 0;
-    
-}
-
-.chatbox-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .box-border {
-    border-color: #000000;
-    border-width: 1em;
-  }
-  
-  .chatbox {
-    background-color: #279af1;
-    border-radius: 20px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    max-width: 500px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-    font-size: 20px;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-  }
-
-.chat-messages {
-    width: 45%;
-    height: 15%;
-    font-size: 12px;
-    border-radius: 1em;
-    padding: 0.5em 1em;
-    background-color: rgb(255, 255, 255);
-    color: #000000;
-    margin-bottom: 0.8em;
-    float: left;
-    clear: both;
-}
-
-.other-messages {
-    width: 45%;
-    height: 15%;
-    font-size: 12px;
-    border-radius: 1em;
-    padding: 0.5em 1em;
-    background-color: #e94b5c;
-    color: #fff;
-    margin-bottom: 0.8em;
-    float: right;
-    clear: both;
-}
