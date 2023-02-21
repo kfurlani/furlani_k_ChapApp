@@ -12,26 +12,24 @@
 <body>
     <img src="/images/logo.png" width="150" height="150">
     <main id="app" class="chatbox-container">
-        <section class="chatbox">
+        <login v-if="!userLogin" @login="userLogin = true"></login>
+        <section class="chatbox" v-if="userLogin">
         <section class="messages">
             <ul id="messages">
                 <!--render a new message component for every message-->
                 <newmsg v-for="message in messages" :message="message"></newmsg>
-            </ul>
-            
+            </ul>   
         </section>
-
         <section>
-            <label for="message">Let us know your name & someone will be with you shortly!</label>
            <!-- <usertyping v-for="A user is typing" :userTypingMsg="userTypingMsg"></usertyping>-->
+           <!--<label for="message" id="title">Let us know your name & someone will be with you shortly!</label>-->
             <input id="nickname" v-model="nickname" type="text" placeholder="Name">
         <form>
-            <textarea @focus="catchTextFocus" v-model="message" id="textarea" class="message" autocomplete="off" placeholder="Message"></textarea>
+            <textarea @focus="catchTextFocus" v-model="message" id="textarea" class="message" autocomplete="off" placeholder="Message" type="textarea"></textarea>
             <input @click.prevent="dispatchMessage" type="submit" value="Send">
         </form>
         </section>
     </section>
-
     </main>
     
 
